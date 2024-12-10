@@ -16,14 +16,14 @@ const LatestColection = () => {
             <div className='text-center py-8 text-3xl'>
                 <Title text1={'LATEST'} text2={'COLLECTION'} />
                 <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                    lkdjlk ldsj lk dkljvl sjldki lvkjsldk vjldis jlvk jslvkjd lksjlvkj
+                    Explore the season's trends with our Latest Collection, featuring stylish, versatile pieces crafted for comfort and quality.
                 </p>
             </div>
             {/* Rendering products */}
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
                 {
                     latestProducts.map((item, index) => (
-                        <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>
+                        <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
                     ))
                 }
             </div>
