@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
+import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
 
@@ -16,7 +17,6 @@ const Product = () => {
       if (product._id === productId) {
         setProductData(product);
         setImage(product.image[0]);
-        console.log(product);
         return;
       }
     })
@@ -85,14 +85,17 @@ const Product = () => {
       {/* description & review */}
       <div className="mt-20">
         <div className="flex">
-          <p className="border px-5 py-3 text-sm">Description</p>
+          <p className="border px-5 py-3 text-sm font-semibold">Description</p>
           <p className="border px-5 py-3 text-sm">Reviews (122)</p>
         </div>
         <div className="flex flex-col gap-4 border py-6 px-6 text-sm text-gray-500">
           <p>This product is thoughtfully designed to bring you a perfect mix of comfort and style. Made from high-quality materials, it feels soft on the skin and ensures long-lasting durability. Its versatile design makes it suitable for various occasions, whether you’re heading to work, meeting friends, or attending a casual outing. With a focus on simplicity and elegance, it’s a piece you’ll want to wear again and again.</p>
-          <p>          Available in multiple sizes and colors, this product is crafted to cater to diverse preferences. Its timeless appeal makes it a great addition to any wardrobe, offering both functionality and fashionable charm.</p>
+          <p>Available in multiple sizes and colors, this product is crafted to cater to diverse preferences. Its timeless appeal makes it a great addition to any wardrobe, offering both functionality and fashionable charm.</p>
         </div>
       </div>
+
+      {/* related products */}
+      <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
     </div>
   )
     : <div className="opacity-0"></div>
