@@ -17,12 +17,12 @@ const CartTotal = () => {
                 <hr />
                 <div className={`flex justify-between ${getCartAmount() === 0 ? 'hidden' : ''}`}>
                     <p>Shipping Fee</p>
-                    <p>{currency} {delivery_fee}</p>
+                    <p>{currency} {delivery_fee}.00</p>
                 </div>
                 <hr className={`${getCartAmount() === 0 ? 'hidden' : ''}`}/>
                 <div className="flex justify-between">
                     <b>Total</b>
-                    <b>{currency} {getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}</b>
+                    <b>{currency} {getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}.00</b>
                 </div>
             </div>
         </div>
