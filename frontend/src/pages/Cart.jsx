@@ -6,8 +6,9 @@ import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
 
-  const { products, currency, cartItems, updateQuantity } = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
+  const [emptyCart, setEmptyCart] = useState(true);
 
   useEffect(() => {
     let tempCartData = [];
@@ -25,10 +26,22 @@ const Cart = () => {
     setCartData(tempCartData);
   }, [cartItems])
 
+  useEffect(() => {
+    if (cartData.length > 0) {
+      setEmptyCart(false);
+    } else {
+      setEmptyCart(true);
+    }
+  }, [cartData]);
+
+
   return (
     <div className='border-t pt-14'>
       <div className="text-2xl mb3">
         <Title text1={'YOUR '} text2={'CART'} />
+      </div>
+      <div className={`font-light text-lg text-gray-400 ${emptyCart ? '' : 'hidden'}`}>
+        <p>Your cart is empty. Let’s add something!</p>
       </div>
       <div className="">
         {
@@ -62,6 +75,9 @@ const Cart = () => {
       <div className="flex justify-end my-20">
         <div className="w-full sm:w-[450px]">
           <CartTotal />
+          <div className="w-full text-end">
+            <button onClick={()=> { if (!emptyCart) {navigate('/place-order')} }} className={`bg-black text-white py-2 px-4 my-8 ${emptyCart ? 'cursor-not-allowed' : ''}`}>PROCEED TO CHECKOUT</button>
+          </div>
         </div>
       </div>
     </div>
