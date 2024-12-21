@@ -11,7 +11,7 @@ const createToken = (id) => {
 };
 
 //Route for user login
-const userLoginController = async (req, res) => {
+const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -39,7 +39,7 @@ const userLoginController = async (req, res) => {
 }
 
 //Route for user registration
-const userRegisterController = async (req, res) => {
+const userRegister = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -80,7 +80,7 @@ const userRegisterController = async (req, res) => {
 }
 
 //Route for admin login
-const adminLoginController = async (req, res) => {
+const adminLogin = async (req, res) => {
 }
 
-export { userLoginController, userRegisterController, adminLoginController };
+export { userLogin , userRegister, adminLogin  };
