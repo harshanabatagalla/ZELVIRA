@@ -28,7 +28,7 @@ const userLogin = async (req, res) => {
             return res.json({ success: true, token });
         }
         else {
-            return res.json({ success: false, message: "Invalid credentials" });
+            return res.json({ success: false, message: "Invalid email or password" });
         }
 
     }
@@ -88,7 +88,7 @@ const adminLogin = async (req, res) => {
             return res.json({ success: true, token });
         }
         else {
-            return res.json({ success: false, message: "Invalid credentials" });
+            return res.json({ success: false, message: "Invalid email or password" });
         }
 
     }
