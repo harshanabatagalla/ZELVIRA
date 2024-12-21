@@ -5,6 +5,16 @@ import productModel from "../models/productModel.js";
 const addProduct = async (req, res) => {
     try {
         const { name, price, description, category, subCategory, sizes, bestSeller } = req.body;
+        
+        if (price < 1) {
+            return res.json({ success: false, message: "Price must be greater than 1" });
+        }
+
+        const existingName = await productModel.findOne({ name });
+        
+        if (existingName) {
+            return res.json({ success: false, message: "Product name already exists. Use different name" });
+        }
 
         const image1 = req.files.image1 && req.files.image1[0];
         const image2 = req.files.image2 && req.files.image2[0];
@@ -31,10 +41,7 @@ const addProduct = async (req, res) => {
             date: Date.now(),
         };
 
-        if (productData.price <= 1) {
-            return res.json({ success: false, message: "price must be greater than 1" });
-        }
-        
+
         const product = new productModel(productData);
         await product.save();
         res.json({ success: true, message: "Product added successfully" });
