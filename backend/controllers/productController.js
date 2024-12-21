@@ -9,12 +9,17 @@ const addProduct = async (req, res) => {
         if (price < 1) {
             return res.json({ success: false, message: "Price must be greater than 1" });
         }
+        
+        if (sizes && JSON.parse(sizes).length < 1) {
+            return res.json({ success: false, message: "Please select at least one size" });
+        }
 
         const existingName = await productModel.findOne({ name });
         
         if (existingName) {
             return res.json({ success: false, message: "Product name already exists. Use different name" });
         }
+        
 
         const image1 = req.files.image1 && req.files.image1[0];
         const image2 = req.files.image2 && req.files.image2[0];
@@ -22,6 +27,9 @@ const addProduct = async (req, res) => {
         const image4 = req.files.image4 && req.files.image4[0];
 
         const images = [image1, image2, image3, image4].filter(image => image !== undefined);
+        if (images.length < 1) {
+            return res.json({ success: false, message: "Please upload at least one image" });
+        }
         let imagesUrl = await Promise.all(
             images.map(async image => {
                 const result = await cloudinary.uploader.upload(image.path, { resource_type: "image" });
