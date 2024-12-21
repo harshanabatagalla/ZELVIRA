@@ -30,6 +30,11 @@ const addProduct = async (req, res) => {
             bestSeller: bestSeller === "true" ? true : false,
             date: Date.now(),
         };
+
+        if (productData.price <= 1) {
+            return res.json({ success: false, message: "price must be greater than 1" });
+        }
+        
         const product = new productModel(productData);
         await product.save();
         res.json({ success: true, message: "Product added successfully" });
