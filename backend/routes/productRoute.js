@@ -16,7 +16,7 @@ productRouter.post('/add',
     addProduct);
 productRouter.get('/list',adminAuth, listProducts);
 productRouter.get('/:id',adminAuth, getProductById);
-productRouter.delete('/remove/',adminAuth, removeProduct);
+productRouter.delete('/remove',adminAuth, removeProduct);
 productRouter.put('/:id',adminAuth, updateProduct);
 
 export default productRouter;
