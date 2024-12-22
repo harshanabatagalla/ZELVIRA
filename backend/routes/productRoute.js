@@ -14,8 +14,8 @@ productRouter.post('/add',
         { name: 'image4', maxCount: 1 }
     ]),
     addProduct);
-productRouter.get('/list',adminAuth, listProducts);
-productRouter.get('/:id',adminAuth, getProductById);
+productRouter.get('/list', listProducts);
+productRouter.get('/:id', getProductById);
 productRouter.delete('/remove',adminAuth, removeProduct);
 productRouter.put('/:id',adminAuth, updateProduct);
 
