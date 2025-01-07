@@ -24,7 +24,7 @@ const Cart = () => {
       }
     }
     setCartData(tempCartData);
-  }, [cartItems])
+  }, [cartItems, products])
 
   useEffect(() => {
     if (cartData.length > 0) {
@@ -51,11 +51,11 @@ const Cart = () => {
             return (
               <div key={index} className="py-4 border-t border-b grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4">
                 <div className="flex items-start gap-6">
-                  <img src={productData.image[0]} alt="product" className="w-16 sm:w-20" />
+                  <img src={productData?.image[0]} alt="product" className="w-16 sm:w-20" />
                   <div className="">
-                    <p className="text-xs sm:text-lg front-medium">{productData.name}</p>
+                    <p className="text-xs sm:text-lg front-medium">{productData?.name}</p>
                     <div className="flex items-center gap-5 mt-2">
-                      <p>{currency}{productData.price}</p>
+                      <p>{currency}{productData?.price}</p>
                       <p className="px-2 sm:px-3 sm:p-1 border bg-slate-50">{item.size}</p>
                     </div>
                   </div>
