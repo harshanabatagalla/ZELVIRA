@@ -30,6 +30,22 @@ const Orders = ({ token }) => {
     }
   }
 
+  const statusHandler = async (orderId, status) => {
+    try {
+      const response = await axios.post(backendUrl + '/api/order/status', { orderId, status }, { headers: { token } });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        fetchAllOrders();
+      } else {
+        toast.error(response.data.message);
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     fetchAllOrders()
   }, [token])
@@ -41,7 +57,7 @@ const Orders = ({ token }) => {
         {
           orders.map((order, index) => (
             <div className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start border-2 border-gray-200 md:p-8 p-5 my-3 md:my-4 text-xs sm:text-sm text-gray-700" key={index}>
-              <img src={assets.parcel_icon} alt="parcel" className='w-12'/>
+              <img src={assets.parcel_icon} alt="parcel" className='w-12' />
               <div>
                 <div>
                   {
@@ -68,7 +84,7 @@ const Orders = ({ token }) => {
                 <p>Date : {new Date(order.date).toLocaleDateString()}</p>
               </div>
               <p className='text-sm sm:text-[15px]'>{currency}{order.amount}</p>
-              <select className='p-2 border-2 border-gray-200 font-semibold' name="status" id="status">
+              <select className='p-2 border-2 border-gray-200 font-semibold' name="status" id="status" onChange={(e) => statusHandler(order._id, e.target.value)} value={order.status}>
                 <option value="Order Placed">Order Placed</option>
                 <option value="Packing">Packing</option>
                 <option value="Shipped">Shipped</option>
