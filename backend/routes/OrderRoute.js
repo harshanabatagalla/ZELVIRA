@@ -6,7 +6,7 @@ import userAuth from '../middleware/auth.js';
 const orderRouter = express.Router();
 
 //admin routes
-orderRouter.post('/list', adminAuth, getAllOrders);
+orderRouter.get('/list', adminAuth, getAllOrders);
 orderRouter.post('/status', adminAuth, updateOrderStatus);
 
 //Payment routes

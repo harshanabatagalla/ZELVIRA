@@ -31,6 +31,7 @@ const Orders = () => {
       }
     } catch (error) {
       toast.error(error.message)
+      console.error(error);
     }
   }
 

@@ -38,8 +38,16 @@ const placeOrderStripe = async (req, res) => {
 const placeOrderRazorpay = async (req, res) => {
 }
 
-//get all orders
+//get all orders for Admin
 const getAllOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find({});
+        res.json({ success: true, orders})
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error });
+        
+    }
 }
 
 //user orders
